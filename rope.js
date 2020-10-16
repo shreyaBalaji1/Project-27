@@ -1,0 +1,32 @@
+class Rope {
+    constructor(body1, body2, offsetX, offsetY) {
+        this.offsetX = offsetX
+        this.offsetY = offsetY
+        var options = {
+            bodyA: body1,
+            bodyB: body2,
+            pointB: {x:this.offsetX, y:this.offsetY}
+            //visible: true,
+            //strokeStyle: "yellow"
+            //stiffness: 0.04,
+            //length: 10
+        }
+        this.rope = Matter.Constraint.create(options); //Why Constraint.create(options) did not work???
+        World.add(world,this.rope);
+    } 
+    display() {
+        var pointA = this.rope.bodyA.position;
+        var pointB = this.rope.bodyB.position;
+
+        strokeWeight(4);
+        stroke("white");
+
+        var Anchor1X = pointA.x
+        var Anchor1Y = pointA.y
+
+        var Anchor2X = pointB.x+this.offsetX
+        var Anchor2Y = pointB.y+this.offsetY
+        
+        line(Anchor1X, Anchor1Y, Anchor2X, Anchor2Y);
+    }
+}
